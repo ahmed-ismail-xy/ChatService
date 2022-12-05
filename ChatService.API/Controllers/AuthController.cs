@@ -20,7 +20,7 @@ namespace CloudChatService.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("RegisterUser")]
+        [HttpPost("Register")]
         public async Task<IActionResult> RegisterUserAsync([FromForm] RegisterDTO.Request request)
         {
             if (!ModelState.IsValid)
@@ -44,7 +44,7 @@ namespace CloudChatService.API.Controllers
         }
      
         
-        [HttpPost("LoginUser")]
+        [HttpPost("Login")]
         public async Task<IActionResult> LoginUserAsync([FromForm] LoginDTO.Request request)
         {
             if (!ModelState.IsValid)

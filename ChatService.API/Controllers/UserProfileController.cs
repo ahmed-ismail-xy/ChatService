@@ -38,8 +38,8 @@ namespace CloudChatService.API.Controllers
             response = await _userProfileService.UpdateUserInfo(phoneNumber, request);
             return Ok(response);
         }
-        [HttpGet("GetUserData")]
-        public async Task<IActionResult> GetUserData()
+        [HttpGet("GetUserInfo")]
+        public async Task<IActionResult> GetUserInfo()
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -64,8 +64,8 @@ namespace CloudChatService.API.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("UpdateUserProfileImage")]
-        public async Task<IActionResult> UpdateUserProfileImagee([FromForm] IFormFile userProfileImage)
+        [HttpPost("UpdateProfileImage")]
+        public async Task<IActionResult> UpdateProfileImagee([FromForm] IFormFile userProfileImage)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -90,90 +90,9 @@ namespace CloudChatService.API.Controllers
             return BadRequest(result);
 
         }
-        //[HttpPut("UpdateUserName")]
-        //public async Task<IActionResult> UpdateUserName([FromBody] UserNameDTO userNameDTO)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var phoneNumber = User.FindFirstValue(ClaimTypes.MobilePhone);
-        //    var result = await _userProfileService.UpdateUserNameAsync(phoneNumber: phoneNumber, userNameDTO: userNameDTO);
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-
-        //    return BadRequest(result);
-        //}
-        //[HttpPut("UpdateUserBio")]
-        //public async Task<IActionResult> UpdateUserBio([FromBody] string userBio)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var phoneNumber = User.FindFirstValue(ClaimTypes.MobilePhone);
-        //    var result = await _userProfileService.UpdateUserBioAsync(phoneNumber: phoneNumber, userBio: userBio);
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-
-        //    return BadRequest(result);
-        //}
-        //[HttpPut("UpdateUserPassword")]
-        //public async Task<IActionResult> UpdateUserPassword([FromBody] string userPassord)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var phoneNumber = User.FindFirstValue(ClaimTypes.MobilePhone);
-        //    var result = await _userProfileService.UpdateUserPasswordAsync(phoneNumber: phoneNumber, userPassord);
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-
-        //    return BadRequest(result);
-        //}
-        //[HttpDelete("DeleteAccountUser")]
-        //public async Task<IActionResult> DeleteUserAccount()
-        //{
-        //    //if (!ModelState.IsValid)
-        //    //    return BadRequest(ModelState);
-        //    //var phoneNumber = User.FindFirstValue(ClaimTypes.MobilePhone);
-
-        //    //var result = await _userProfileService.DeleteUserAsync(phoneNumber: phoneNumber);
-
-        //    //if (!ModelState.IsValid)
-        //    //{
-        //    //    return BadRequest(ModelState);
-        //    //}
-
-        //    //if (result.Success)
-        //    //{
-        //    //    return Ok(result);
-        //    //}
-
-        //    return BadRequest();
-        //}
-
-        [HttpDelete("DeleteUserProfileImage")]
-        public async Task<IActionResult> DeleteUserProfileImage()
+        [HttpDelete("DeleteProfileImage")]
+        public async Task<IActionResult> DeleteProfileImage()
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -193,35 +112,8 @@ namespace CloudChatService.API.Controllers
             return BadRequest(result);
         }
 
-        //[HttpGet("GetUser")]
-        //public async Task<IActionResult> GetUser()
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var phoneNumber = User.FindFirstValue(ClaimTypes.MobilePhone);
-        //    var result = await _userProfileService.UpdateUserBioAsync(phoneNumber, userBio: "");
-        //    //DataTable data = result.Data;
-        //    //List<UserInfo> userInfo = _mapper.Map<List<UserInfo>>(data);
-
-        //    //Console.WriteLine(userInfo.Count);
-
-
-        //        //AutoMapper.Mapper.DynamicMap<IDataReader, List<UserInfo>>(data);
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-
-        //    return BadRequest(result);
-        //}
-
-        [HttpGet("GetUserImage")]
-        public async Task<ActionResult> GetUserImage()
+        [HttpGet("GetProfileImage")]
+        public async Task<ActionResult> GetProfileImage()
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

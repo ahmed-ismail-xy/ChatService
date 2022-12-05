@@ -72,7 +72,7 @@ namespace CloudChatService.API.Controllers
             return BadRequest(result);
         }
         
-        [HttpPost("CheckIsChatExistAndCreateIt")]
+        [HttpPost("IsChatExistAndCreateIt")]
         public async Task<IActionResult> CheckIsChatExistAndCreateIt([FromForm] CheckIsChatExistAndCreateItDTO.Request request)
         {
             if (!ModelState.IsValid)

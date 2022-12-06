@@ -3,7 +3,7 @@ using CloudChatService.Core.DTOs.Auth;
 using CloudChatService.Core.IDBServices;
 using CloudChatService.Core.Services;
 using CloudChatService.Infrastructure.Data;
-using CloudChatService.Infrastructure.Repository.UserRepository.SheardMethods;
+using CloudChatService.Infrastructure.Repository.UserRepository.Helper;
 using CloudChatService.Infrastrucure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
@@ -35,7 +35,7 @@ namespace CloudChatService.Infrastructure.Repository
                 return new(message: "User Already Exist", erorrNumber: 0);
             }
 
-            string imagePath = SaveUserImage.saveUserImage(userInfo.PhoneNumber, userImage);
+            string imagePath = SaveUserFile.saveUserFile(userInfo.PhoneNumber, userImage);
 
             bool changes = _dBUserService.CreateUser(userInfo: userInfo, imagePath);
 

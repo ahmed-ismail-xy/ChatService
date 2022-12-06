@@ -2,9 +2,8 @@
 using CloudChatService.Core.DTOs.Message;
 using CloudChatService.Core.IDBServices;
 using CloudChatService.Core.Services;
-using CloudChatService.Infrastructure.Repository.UserRepository.SheardMethods;
+using CloudChatService.Infrastructure.Repository.UserRepository.Helper;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 
 
 namespace CloudChatService.Infrastructure.Repository
@@ -23,11 +22,11 @@ namespace CloudChatService.Infrastructure.Repository
             if (fileResult)
             {
                 List<string> pathesFiles = new List<string>();
-                if (message.HasImages)
+                if (message.HasFiles)
                 {
-                    foreach (var file in message.Files)
+                    foreach (var file in message.filesList.Files)
                     {
-                        string path = await SaveUserImage.saveFileInUserChatAsync(phoneNumber: phoneNumber, partnerPhoneNumber: message.ReceiverPhoneNumber, file: file, chatId: message.ChatId);
+                        string path = await SaveUserFile.saveFileInUserChatAsync(phoneNumber: phoneNumber, receiverPhoneNumber: message.ReceiverPhoneNumber, file: file, chatId: message.ChatId);
                         pathesFiles.Add(path);
                     }
                 }
@@ -53,6 +52,7 @@ namespace CloudChatService.Infrastructure.Repository
             GetAllMessagesDTO.Response ListOfMessages = new GetAllMessagesDTO.Response();
 
             ListOfMessages = _dBMessageService.GetAllMessagesByChatId(chatId);
+
             if (ListOfMessages.Messages.Count < 1)
             {
                 return new(message: "GetAllMessagesByChatId: No Messages Founded", erorrNumber: 0);
@@ -67,5 +67,33 @@ namespace CloudChatService.Infrastructure.Repository
         {
             throw new NotImplementedException();
         }
+
+        //#region Download File  
+        //public (string fileType, byte[] archiveData, string archiveName) DownloadFiles(string subDirectory)
+        //{
+        //    var zipName = $"archive-{DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss")}.zip";
+
+        //    var files = Directory.GetFiles(Path.Combine(_hostingEnvironment.ContentRootPath, subDirectory)).ToList();
+
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        using (var archive = new ZipArchive(memoryStream, File.Create, true))
+        //        {
+        //            files.ForEach(file =>
+        //            {
+        //                var theFile = archive.CreateEntry(file);
+        //                using (var streamWriter = new StreamWriter(theFile.Open()))
+        //                {
+        //                    streamWriter.Write(File.ReadAllText(file));
+        //                }
+
+        //            });
+        //        }
+
+        //        return ("application/zip", memoryStream.ToArray(), zipName);
+        //    }
+
+        //}
+        //#endregion
     }
 }

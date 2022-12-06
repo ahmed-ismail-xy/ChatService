@@ -3,7 +3,7 @@ using CloudChatService.Core.DTOs.Chat;
 using CloudChatService.Core.DTOs.UserProfile;
 using CloudChatService.Core.IDBServices;
 using CloudChatService.Core.Services;
-using CloudChatService.Infrastructure.Repository.UserRepository.SheardMethods;
+using CloudChatService.Infrastructure.Repository.UserRepository.Helper;
 using Microsoft.Extensions.Configuration;
 
 
@@ -30,7 +30,7 @@ namespace CloudChatService.Infrastructure.Repository
             {
                 foreach (var user in listOfChats.Chats)
                 {
-                    ImageData imageData = SaveUserImage.getUserImage(user.ChatImageName);
+                    ImageData imageData = SaveUserFile.getUserFile(user.ChatImageName);
                     user.ChatImage = imageData.file;
                     user.ChatImageName = imageData.name;
                 }
@@ -53,7 +53,7 @@ namespace CloudChatService.Infrastructure.Repository
             {
                 foreach (var user in ListOfUsers.Users)
                 {
-                    ImageData imageData = SaveUserImage.getUserImage(user.UserImageName);
+                    ImageData imageData = SaveUserFile.getUserFile(user.UserImageName);
                     user.UserImage = imageData.file;
                     user.UserImageName = imageData.name;
                 }

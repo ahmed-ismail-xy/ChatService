@@ -2,7 +2,7 @@
 using CloudChatService.Core.DTOs.UserProfile;
 using CloudChatService.Core.IDBServices;
 using CloudChatService.Core.Services;
-using CloudChatService.Infrastructure.Repository.UserRepository.SheardMethods;
+using CloudChatService.Infrastructure.Repository.UserRepository.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -113,7 +113,7 @@ namespace CloudChatService.Infrastructure.Repository
             {
                 return new(message: "GetUserImage: User Image", erorrNumber: 0)
                 {
-                    Data = SaveUserImage.getUserImage(user.UserImageName)
+                    Data = SaveUserFile.getUserFile(user.UserImageName)
                 };
             }
             return new(message: "GetUserImage: cannot get user Image", erorrNumber: 1);
@@ -127,7 +127,7 @@ namespace CloudChatService.Infrastructure.Repository
             }
 
 
-            string imagePath = SaveUserImage.saveUserImage(phoneNumber, file);
+            string imagePath = SaveUserFile.saveUserFile(phoneNumber, file);
             var result = _dBUserService.UpdateUserInfo(phoneNumber: phoneNumber, userImage: imagePath);
             if (result)
                 return new(message: "UpdateUserImage: " + imagePath, erorrNumber: 0);
@@ -145,7 +145,7 @@ namespace CloudChatService.Infrastructure.Repository
             }
             else if (user.UserImageName is not null || user.UserImageName.Length >= 10 || user.UserImageName != string.Empty)
             {
-                ImageData imageData = SaveUserImage.getUserImage(user.UserImageName);
+                ImageData imageData = SaveUserFile.getUserFile(user.UserImageName);
                 user.UserImage = imageData.file;
                 user.UserImageName = imageData.name;
                 return new(message: "GetUserData: User Data", erorrNumber: 0)

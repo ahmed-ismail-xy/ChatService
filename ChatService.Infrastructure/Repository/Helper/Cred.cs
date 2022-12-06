@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace CloudChatService.Infrastructure.Repository.UserRepository.SheardMethods
+namespace CloudChatService.Infrastructure.Repository.UserRepository.Helper
 {
     public static class MyCredentialManager
     {
